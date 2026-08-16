@@ -50,7 +50,7 @@ export default function HomeTabs({ activeTab, onTabChange }: HomeTabsProps) {
   }, [activeTab])
 
   return (
-    <div className="sticky top-16 z-40 bg-white/80 backdrop-blur-xl border-b border-purple-100/60">
+    <div className="sticky top-16 z-40 bg-white/60 backdrop-blur-xl border-b border-purple-100/40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div
           ref={tabsRef}
@@ -60,7 +60,7 @@ export default function HomeTabs({ activeTab, onTabChange }: HomeTabsProps) {
         >
           {/* Animated background indicator */}
           <motion.div
-            className="absolute top-3 h-[calc(100%-24px)] bg-purple-100 rounded-xl"
+            className="absolute top-3 h-[calc(100%-24px)] bg-purple-100/70 rounded-xl"
             animate={{
               left: indicatorStyle.left,
               width: indicatorStyle.width,

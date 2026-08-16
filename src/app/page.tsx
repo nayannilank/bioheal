@@ -42,7 +42,7 @@ export default function HomePage() {
           <section className="py-16 lg:py-24">
             <div className="container mx-auto px-6 lg:px-8">
               <div className="max-w-3xl mx-auto text-center">
-                <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-6">
+                <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6">
                   Your body is an interconnected system — and when something feels off,
                   there&apos;s always a reason. BioHeal helps you uncover the root causes of
                   chronic health concerns and build a personalised path to lasting

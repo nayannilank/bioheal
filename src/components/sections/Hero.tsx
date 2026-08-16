@@ -6,13 +6,7 @@ import Button from '@/components/ui/Button'
 
 export default function Hero() {
   return (
-    <section className="relative bg-gradient-to-br from-purple-50 via-white to-lavender-50 overflow-hidden">
-      {/* Background blobs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-purple-100/40 rounded-full blur-3xl animate-morph" />
-        <div className="absolute -bottom-60 -left-40 w-[500px] h-[500px] bg-lavender-100/30 rounded-full blur-3xl animate-float" />
-      </div>
-
+    <section className="relative overflow-hidden">
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         {/* Brand hierarchy — centered, clean */}
         <motion.div
