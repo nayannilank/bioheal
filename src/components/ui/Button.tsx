@@ -31,7 +31,7 @@ const sizes = {
 }
 
 // Pages that are live — everything else redirects to /coming-soon
-const LIVE_PAGES = ['/', '/#faq', '/coming-soon']
+const LIVE_PAGES = ['/', '/#faq', '/coming-soon', '/about']
 
 function getResolvedHref(href: string): string {
   // External links always pass through
