@@ -2,12 +2,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Button from '@/components/ui/Button'
 
 export default function Hero() {
   return (
-    <section className="relative bg-gradient-to-br from-purple-50 via-white to-lavender-50">
+    <section className="relative bg-gradient-to-br from-purple-50 via-white to-lavender-50 overflow-hidden">
       {/* Background blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-purple-100/40 rounded-full blur-3xl animate-morph" />
@@ -15,45 +14,15 @@ export default function Hero() {
       </div>
 
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
-        {/* Top bar: Logo left, CTAs right */}
+        {/* Brand hierarchy — centered, clean */}
         <motion.div
-          className="flex items-center justify-between py-6"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Logo — top left */}
-          <div className="flex-shrink-0">
-            <Image
-              src="/logo.png"
-              alt="BioHeal Logo"
-              width={72}
-              height={72}
-              className="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20"
-              priority
-            />
-          </div>
-
-          {/* CTAs — top right */}
-          <div className="flex items-center gap-3">
-            <Button href="/contact" variant="primary" size="sm">
-              Begin Your Journey
-            </Button>
-            <Button href="/about" variant="secondary" size="sm">
-              Learn Our Approach
-            </Button>
-          </div>
-        </motion.div>
-
-        {/* Brand hierarchy — centered */}
-        <motion.div
-          className="text-center pb-12 pt-4"
+          className="text-center py-12 lg:py-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6 }}
         >
           {/* Brand name — largest */}
-          <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-purple-900 leading-none mb-4">
+          <h1 className="font-heading text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold text-purple-900 leading-none mb-5">
             BioHeal
           </h1>
 
@@ -63,9 +32,34 @@ export default function Hero() {
           </p>
 
           {/* Descriptor — smallest */}
-          <p className="text-sm sm:text-base lg:text-lg font-medium text-purple-500 tracking-wide">
+          <p className="text-sm sm:text-base lg:text-lg font-medium text-purple-500 tracking-wide mb-10">
             Functional Medicine · Lifestyle Transformation · Root-Cause Healing
           </p>
+
+          {/* CTAs — centered below descriptor */}
+          <motion.div
+            className="flex items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Button href="/contact" variant="primary" size="lg">
+              Begin Your Journey
+            </Button>
+            <Button href="/about" variant="secondary" size="lg">
+              Learn Our Approach
+            </Button>
+          </motion.div>
+
+          {/* Subtle location note */}
+          <motion.p
+            className="mt-6 text-sm text-gray-400 italic"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+          >
+            For adults &amp; children · Bangalore &amp; across India (virtual)
+          </motion.p>
         </motion.div>
       </div>
     </section>
