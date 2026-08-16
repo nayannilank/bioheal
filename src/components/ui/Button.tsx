@@ -1,3 +1,4 @@
+
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
@@ -29,6 +30,22 @@ const sizes = {
   lg: 'px-8 py-3.5 text-base rounded-2xl',
 }
 
+// Pages that are live — everything else redirects to /coming-soon
+const LIVE_PAGES = ['/', '/#faq', '/coming-soon']
+
+function getResolvedHref(href: string): string {
+  // External links always pass through
+  if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+    return href
+  }
+  // Live pages pass through
+  if (LIVE_PAGES.includes(href)) {
+    return href
+  }
+  // Everything else → coming soon
+  return '/coming-soon'
+}
+
 export default function Button({
   children,
   href,
@@ -48,8 +65,19 @@ export default function Button({
   )
 
   if (href) {
+    const resolvedHref = getResolvedHref(href)
+    const isExternal = href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')
+
+    if (isExternal) {
+      return (
+        <a href={resolvedHref} target="_blank" rel="noopener noreferrer" className={classes}>
+          {children}
+        </a>
+      )
+    }
+
     return (
-      <Link href={href} className={classes}>
+      <Link href={resolvedHref} className={classes}>
         {children}
       </Link>
     )
@@ -61,3 +89,4 @@ export default function Button({
     </button>
   )
 }
+

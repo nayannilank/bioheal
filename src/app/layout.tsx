@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next'
 import { Inter, Plus_Jakarta_Sans, Playfair_Display } from 'next/font/google'
 import '@/styles/globals.css'
@@ -37,11 +38,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jakarta.variable} ${playfair.variable}`}>
-      <body className="antialiased">
+    <html
+      lang="en"
+      className={`${inter.variable} ${jakarta.variable} ${playfair.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="antialiased" suppressHydrationWarning>
         <main>{children}</main>
         <FloatingWhatsApp />
       </body>
     </html>
   )
 }
+
