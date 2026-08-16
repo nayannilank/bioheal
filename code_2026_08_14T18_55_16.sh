@@ -1,0 +1,12 @@
+# First, check what's actually missing
+echo "=== UI Components ==="
+ls src/components/ui/ 2>/dev/null || echo "❌ ui/ folder missing"
+echo ""
+echo "=== Lib files ==="
+ls src/lib/ 2>/dev/null || echo "❌ lib/ folder missing"
+echo ""
+echo "=== Styles ==="
+ls src/styles/ 2>/dev/null || echo "❌ styles/ folder missing"
+echo ""
+echo "=== Installed packages ==="
+cat package.json | grep -E "framer-motion|clsx|tailwind-merge"
