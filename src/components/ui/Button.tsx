@@ -1,6 +1,9 @@
 
+'use client'
+
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { isLivePage } from '@/lib/routes'
 
 interface ButtonProps {
   children: React.ReactNode
@@ -15,35 +18,19 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    'bg-purple-600 text-white hover:bg-purple-700 shadow-soft hover:shadow-elevated active:scale-[0.98]',
+    'bg-purple-600 text-white hover:bg-purple-700 shadow-soft hover:shadow-card active:bg-purple-800',
   secondary:
-    'bg-white text-purple-600 border-2 border-purple-200 hover:border-purple-400 hover:bg-purple-50 active:scale-[0.98]',
+    'bg-white text-purple-700 border border-purple-200 hover:border-purple-300 hover:bg-purple-50 shadow-soft',
   ghost:
-    'bg-transparent text-purple-600 hover:bg-purple-50 border border-transparent hover:border-purple-100',
+    'text-purple-600 hover:text-purple-700 hover:bg-purple-50',
   white:
-    'bg-white text-purple-700 hover:bg-purple-50 shadow-soft hover:shadow-elevated active:scale-[0.98]',
+    'bg-white text-purple-700 hover:bg-purple-50 shadow-soft',
 }
 
 const sizes = {
-  sm: 'px-4 py-2 text-sm rounded-xl',
-  md: 'px-6 py-2.5 text-sm rounded-xl',
-  lg: 'px-8 py-3.5 text-base rounded-2xl',
-}
-
-// Pages that are live — everything else redirects to /coming-soon
-const LIVE_PAGES = ['/', '/#faq', '/coming-soon', '/about', '/services']
-
-function getResolvedHref(href: string): string {
-  // External links always pass through
-  if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
-    return href
-  }
-  // Live pages pass through
-  if (LIVE_PAGES.includes(href)) {
-    return href
-  }
-  // Everything else → coming soon
-  return '/coming-soon'
+  sm: 'px-4 py-2 text-sm rounded-lg',
+  md: 'px-5 py-2.5 text-sm rounded-xl',
+  lg: 'px-7 py-3 text-base rounded-xl',
 }
 
 export default function Button({
@@ -56,35 +43,49 @@ export default function Button({
   type = 'button',
   disabled = false,
 }: ButtonProps) {
-  const classes = cn(
+  const baseClasses = cn(
     'inline-flex items-center justify-center font-medium transition-all duration-200 cursor-pointer',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2',
+    'disabled:opacity-50 disabled:cursor-not-allowed',
     variants[variant],
     sizes[size],
-    disabled && 'opacity-50 cursor-not-allowed',
     className
   )
 
+  // If it's a link
   if (href) {
-    const resolvedHref = getResolvedHref(href)
-    const isExternal = href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')
+    // Check if the page exists — if not, redirect to coming-soon
+    const resolvedHref = isLivePage(href) ? href : `/coming-soon?from=${encodeURIComponent(href)}`
 
-    if (isExternal) {
+    // External links open in new tab
+    if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
       return (
-        <a href={resolvedHref} target="_blank" rel="noopener noreferrer" className={classes}>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={baseClasses}
+        >
           {children}
         </a>
       )
     }
 
     return (
-      <Link href={resolvedHref} className={classes}>
+      <Link href={resolvedHref} className={baseClasses}>
         {children}
       </Link>
     )
   }
 
+  // If it's a button
   return (
-    <button type={type} onClick={onClick} disabled={disabled} className={classes}>
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={baseClasses}
+    >
       {children}
     </button>
   )

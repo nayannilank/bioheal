@@ -1,118 +1,81 @@
 
 'use client'
 
+import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Button from '@/components/ui/Button'
 
-export default function ComingSoonPage() {
+function ComingSoonContent() {
+  const searchParams = useSearchParams()
+  const from = searchParams.get('from')
+
+  // Convert slug to readable name
+  const getPageName = (path: string | null): string | null => {
+    if (!path) return null
+    const segments = path.split('/').filter(Boolean)
+    const last = segments[segments.length - 1]
+    return last
+      .split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+  }
+
+  const pageName = getPageName(from)
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-lavender-50 overflow-hidden">
-      {/* Background blobs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-purple-100/40 rounded-full blur-3xl animate-morph" />
-        <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-lavender-100/30 rounded-full blur-3xl animate-float" />
-        <div className="absolute top-1/3 left-1/2 w-[300px] h-[300px] bg-sage-100/20 rounded-full blur-2xl" />
-      </div>
-
-      <div className="container mx-auto px-6 lg:px-8 relative z-10">
+    <section className="min-h-[70vh] flex items-center justify-center py-16">
+      <div className="container mx-auto px-6 lg:px-8">
         <motion.div
-          className="max-w-2xl mx-auto text-center"
-          initial={{ opacity: 0, y: 30 }}
+          className="max-w-lg mx-auto text-center"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
         >
-          {/* Logo */}
-          <motion.div
-            className="mb-8 flex justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <Image
-              src="/logo.png"
-              alt="BioHeal Logo"
-              width={100}
-              height={100}
-              className="w-20 h-20 sm:w-24 sm:h-24"
-            />
-          </motion.div>
+          <div className="icon-container-lg mx-auto mb-6">🌱</div>
 
-          {/* Brand name */}
-          <motion.h1
-            className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-purple-900 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            BioHeal
-          </motion.h1>
+          <h1 className="font-heading text-3xl sm:text-4xl font-bold text-purple-900 mb-4">
+            {pageName ? `${pageName} is` : 'This page is'} growing
+          </h1>
 
-          {/* Tagline */}
-          <motion.p
-            className="font-heading text-lg sm:text-xl text-purple-600 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            Healing Through Lifestyle, Guided by Science
-          </motion.p>
+          <p className="text-lg text-gray-600 leading-relaxed mb-3">
+            We&apos;re nurturing this part of BioHeal and it&apos;ll be ready soon.
+          </p>
 
-          {/* WIP Message */}
-          <motion.div
-            className="bg-white/70 backdrop-blur-sm rounded-3xl border border-purple-100/60 p-8 sm:p-10 mb-8 shadow-soft"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="w-14 h-14 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center mx-auto mb-5 text-2xl">
-              🌱
-            </div>
-            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-purple-900 mb-4">
-              Something beautiful is growing here
-            </h2>
-            <p className="text-gray-600 leading-relaxed mb-3">
-              This page is currently being crafted with the same care and attention
-              we bring to everything at BioHeal. We&apos;re building something
-              meaningful — and it&apos;ll be ready soon.
-            </p>
-            <p className="text-gray-500 text-sm leading-relaxed">
-              In the meantime, feel free to explore what&apos;s already live or
-              reach out to us directly — we&apos;d love to hear from you.
-            </p>
-          </motion.div>
+          <p className="text-gray-500 text-sm mb-8">
+            In the meantime, explore what&apos;s already here — or reach out directly
+            if you have questions.
+          </p>
 
-          {/* Actions */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
+          <div className="flex items-center justify-center gap-4 flex-wrap">
             <Button href="/" variant="primary" size="lg">
               Back to Home
             </Button>
-            <Button
-              href="https://wa.me/91XXXXXXXXXX?text=Hi%20BioHeal%2C%20I'd%20like%20to%20know%20more"
-              variant="secondary"
-              size="lg"
-            >
-              Message on WhatsApp
+            <Button href="/contact" variant="secondary" size="lg">
+              Get in Touch
             </Button>
-          </motion.div>
+          </div>
 
-          {/* Descriptor */}
-          <motion.p
-            className="mt-10 text-xs text-purple-400 tracking-wide"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-          >
-            Functional Medicine · Lifestyle Transformation · Root-Cause Healing
-          </motion.p>
+          {from && (
+            <p className="mt-8 text-xs text-gray-400">
+              Requested: <code className="bg-purple-50 px-2 py-0.5 rounded text-purple-500">{from}</code>
+            </p>
+          )}
         </motion.div>
       </div>
     </section>
+  )
+}
+
+export default function ComingSoonPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-[70vh] flex items-center justify-center">
+        <div className="animate-pulse-soft text-purple-400">Loading...</div>
+      </div>
+    }>
+      <ComingSoonContent />
+    </Suspense>
   )
 }
 
