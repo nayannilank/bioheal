@@ -5,6 +5,8 @@ import '@/styles/globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
+import { defaultMetadata } from '@/lib/metadata'
+import StructuredData from '@/components/seo/StructuredData'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -24,15 +26,7 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: {
-    default: 'BioHeal | Functional Medicine & Lifestyle Health',
-    template: '%s | BioHeal',
-  },
-  description:
-    'Uncover the root causes of chronic illness. Personalised functional medicine guidance for PCOS, thyroid, gut health, diabetes & more. Adults & children.',
-  metadataBase: new URL('https://bioheal.co.in'),
-}
+export const metadata: Metadata = defaultMetadata
 
 export default function RootLayout({
   children,
@@ -45,19 +39,22 @@ export default function RootLayout({
       className={`${inter.variable} ${jakarta.variable} ${playfair.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <StructuredData />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#7C3AED" />
+      </head>
       <body className="antialiased relative min-h-screen bg-purple-50/30" suppressHydrationWarning>
         {/* Fixed background — Tree of Life with purple tint */}
         <div className="fixed inset-0 z-0" aria-hidden="true">
-          {/* Purple base tint */}
           <div className="absolute inset-0 bg-gradient-to-b from-purple-50 via-white to-purple-50/50" />
-
-          {/* Tree of Life image — visible */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25 mix-blend-multiply"
             style={{ backgroundImage: 'url(/background.jpg)' }}
           />
-
-          {/* Soft purple overlay to unify */}
           <div className="absolute inset-0 bg-purple-100/20" />
         </div>
 

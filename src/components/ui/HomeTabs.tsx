@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
-export type TabId = 'home' | 'approach' | 'conditions' | 'how-it-works' | 'stories'
+export type TabId = 'home' | 'approach' | 'conditions' | 'how-it-works'
 
 interface Tab {
   id: TabId
@@ -17,7 +17,6 @@ const tabs: Tab[] = [
   { id: 'approach', label: 'Our Approach' },
   { id: 'conditions', label: 'Conditions' },
   { id: 'how-it-works', label: 'How It Works' },
-  { id: 'stories', label: 'Stories' },
 ]
 
 interface HomeTabsProps {

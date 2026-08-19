@@ -20,10 +20,6 @@ import Conditions from '@/components/sections/Conditions'
 import HowItWorks from '@/components/sections/HowItWorks'
 import FAQ from '@/components/sections/FAQ'
 
-// Tab: Stories
-import Testimonials from '@/components/sections/Testimonials'
-import CTA from '@/components/sections/CTA'
-
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<TabId>('home')
 
@@ -81,11 +77,6 @@ export default function HomePage() {
         <TabPanel id="how-it-works" activeTab={activeTab}>
           <HowItWorks />
           <FAQ />
-        </TabPanel>
-
-        <TabPanel id="stories" activeTab={activeTab}>
-          <Testimonials />
-          <CTA />
         </TabPanel>
       </div>
     </>
