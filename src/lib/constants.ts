@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
   email: 'care@bioheal.co.in',
   phone: '+91-9113804439',
   whatsapp: 'https://wa.me/91XXXXXXXXXX',
-  instagram: 'https://instagram.com/bioheal.co.in',
+  instagram: 'https://www.instagram.com/sj.bioheal/',
   location: 'Bangalore, India',
 }
 
@@ -38,7 +38,7 @@ export const FOOTER_LINKS = {
   connect: [
     { label: 'Book a Call', href: '/contact' },
     { label: 'WhatsApp', href: 'https://wa.me/919113804439' },
-    { label: 'Instagram', href: 'https://instagram.com/bioheal.co.in' },
+    { label: 'Instagram', href: 'https://www.instagram.com/sj.bioheal/' },
     { label: 'Email', href: 'mailto:care@bioheal.co.in' },
   ],
 }

@@ -36,7 +36,7 @@ export default function StructuredData() {
       opens: '09:00',
       closes: '18:00',
     },
-    sameAs: ['https://www.instagram.com/bioheal.in'],
+    sameAs: ['https://www.instagram.com/sj.bioheal/'],
   }
 
   const websiteSchema = {
