@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next'
 
 const BASE_URL = 'https://bioheal.co.in'
@@ -6,9 +5,6 @@ const SITE_NAME = 'BioHeal'
 const DEFAULT_DESCRIPTION =
   'Functional medicine & lifestyle health space. Uncover root causes of chronic illness through personalised nutrition, lifestyle coaching, and evidence-informed guidance. For adults & children.'
 
-/**
- * Default metadata applied site-wide via layout.tsx
- */
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
@@ -76,14 +72,8 @@ export const defaultMetadata: Metadata = {
   alternates: {
     canonical: BASE_URL,
   },
-  verification: {
-    google: 'YOUR_GOOGLE_VERIFICATION_CODE', // Add after Search Console setup
-  },
 }
 
-/**
- * Helper to generate page-specific metadata
- */
 export function generatePageMetadata({
   title,
   description,
@@ -103,7 +93,13 @@ export function generatePageMetadata({
   return {
     title,
     description,
-    keywords: [...(defaultMetadata.keywords as string[]), ...keywords],
+    keywords: [
+      'functional medicine',
+      'lifestyle medicine',
+      'root cause healing',
+      'BioHeal',
+      ...keywords,
+    ],
     alternates: {
       canonical: url,
     },
@@ -120,4 +116,3 @@ export function generatePageMetadata({
     },
   }
 }
-

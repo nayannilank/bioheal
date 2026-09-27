@@ -1,4 +1,3 @@
-
 export default function StructuredData() {
   const organizationSchema = {
     '@context': 'https://schema.org',
@@ -20,14 +19,8 @@ export default function StructuredData() {
       addressCountry: 'IN',
     },
     areaServed: [
-      {
-        '@type': 'City',
-        name: 'Bangalore',
-      },
-      {
-        '@type': 'Country',
-        name: 'India',
-      },
+      { '@type': 'City', name: 'Bangalore' },
+      { '@type': 'Country', name: 'India' },
     ],
     serviceType: [
       'Functional Medicine Consultation',
@@ -35,11 +28,7 @@ export default function StructuredData() {
       'Nutrition Planning',
       'Lab Interpretation',
     ],
-    medicalSpecialty: [
-      'Functional Medicine',
-      'Lifestyle Medicine',
-      'Nutrition Science',
-    ],
+    medicalSpecialty: ['Functional Medicine', 'Lifestyle Medicine', 'Nutrition Science'],
     priceRange: '₹₹',
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
@@ -47,10 +36,17 @@ export default function StructuredData() {
       opens: '09:00',
       closes: '18:00',
     },
-    sameAs: [
-      'https://www.instagram.com/bioheal.in',
-      // Add other social profiles
-    ],
+    sameAs: ['https://www.instagram.com/bioheal.in'],
+  }
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://bioheal.co.in/#website',
+    name: 'BioHeal',
+    url: 'https://bioheal.co.in',
+    description: 'Functional medicine & lifestyle health space',
+    publisher: { '@id': 'https://bioheal.co.in/#organization' },
   }
 
   const localBusinessSchema = {
@@ -74,18 +70,6 @@ export default function StructuredData() {
     priceRange: '₹₹',
   }
 
-  const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    '@id': 'https://bioheal.co.in/#website',
-    name: 'BioHeal',
-    url: 'https://bioheal.co.in',
-    description: 'Functional medicine & lifestyle health space',
-    publisher: {
-      '@id': 'https://bioheal.co.in/#organization',
-    },
-  }
-
   return (
     <>
       <script
@@ -94,13 +78,12 @@ export default function StructuredData() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
       />
     </>
   )
 }
-

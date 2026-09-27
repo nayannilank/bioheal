@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next'
 import { Inter, Plus_Jakarta_Sans, Playfair_Display } from 'next/font/google'
 import '@/styles/globals.css'
@@ -48,7 +47,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#7C3AED" />
       </head>
       <body className="antialiased relative min-h-screen bg-purple-50/30" suppressHydrationWarning>
-        {/* Fixed background — Tree of Life with purple tint */}
+        {/* Fixed background */}
         <div className="fixed inset-0 z-0" aria-hidden="true">
           <div className="absolute inset-0 bg-gradient-to-b from-purple-50 via-white to-purple-50/50" />
           <div
@@ -58,7 +57,7 @@ export default function RootLayout({
           <div className="absolute inset-0 bg-purple-100/20" />
         </div>
 
-        {/* Content layer */}
+        {/* Content */}
         <div className="relative z-10">
           <Navbar />
           <main>{children}</main>
@@ -69,4 +68,3 @@ export default function RootLayout({
     </html>
   )
 }
-

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /coming-soon
+Disallow: /design-system
+
+Sitemap: https://bioheal.co.in/sitemap.xml
